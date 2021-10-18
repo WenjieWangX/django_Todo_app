@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+{% comment %}
+  Final Project: ToDo App
+  Group Member: Wenjie Wang, John Mwai, Alireza
+  COM 214
+  05/11/2021
+{% endcomment %}
+{% load crispy_forms_tags %}
+
+{% block title %}Category Edit{% endblock %}
+
+{% block content %}
+<div class="container juumbotron shadow-lg p-3 mb-5 bg-body center">
+  <h1>Edit</h1>
+  <form action="" method="post">{% csrf_token %}
+    {{ form|crispy }}
+    <div style="float: right;">
+      <button class="btn btn-info ml-2" type="submit">Update</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+div.login {
+  background-color: #fff;
+  width: 40%;
+  margin: 80px auto;
+  border-radius: 10px;
+  padding: 20px;
+  border-left: 5px solid #b296da;
+  box-shadow: 0px 0px 0px 0px #3f51b5;
+}
+
+.login > .row > h2 {
+  margin: auto;
+}
+
+.btn-form {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 3em;
+}
+
+.signup-box {
+  margin-top: 5em;
+  margin: 80px auto;
+  border-radius: 10px;
+  padding: 20px;
+  border-left: 5px solid #b296da;
+  box-shadow: 0px 0px 0px 0px #3f51b5;
+}
+
+.todo-box {
+  margin-top: 5em;
+  margin: 80px auto;
+  border-radius: 10px;
+  padding: 20px;
+  border-top: 7px solid rgb(97, 96, 96);
+  border-right: 7px solid rgb(97, 96, 96);
+}
+
+.text-looks {
+  font-family: sans-serif;
+  width: fit-content;
+  margin: auto;
+  padding: 0.5em 0;
+}
+
+.container {
+  width: auto;
+  padding: 15px 15px;
+}
+
+.center {
+  margin: 8em auto;
+}
+
+.name-color {
+  color: white;
+}
+
+.name-color:hover {
+  color: skyblue;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.container .text-looks {
+  font-family: sans-serif;
+  width: fit-content;
+  margin: auto;
+  padding: 0.5em 0;
+  border-bottom: 2px solid #304cfd;
+}
+
+.style-color {
+  margin-top: 20px !important;
+  background: linear-gradient(90deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.start-color {
+  color: yellow;
+}
+
+.welcome-text {
+  font-size: 58px;
+}
+.desc {
+  font-size: 35px;
+  color: red;
+}
+
+.btnGettingStarted {
+  background-color: #ff00ff;
+}
+.important-task {
+  background-color: #d8cca7;
+}
+.completeTask {
+  background-color: #00ff99;
+}
+.edit_style_left {
+  margin-right: 10px;
+  background-color: #99ffcc;
+}
+.edit_style_right {
+  margin-right: 10px;
+  background-color: #e0b8b8;
+}
+
+.list-group-item .badge {
+  float: right;
+}
+
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #777;
+  border-radius: 10px;
+}
+.box{
+    transition-property: box-shadow, transform;
+    transition-duration: 1s;
+}
+.box:hover{
+    /* box-shadow: 2px 2px 5px #8080807a; */
+    box-shadow: 1px 2px 8px 0px #00bcffb0;
+    transform: translateY(-9px);
+}
+.img-box{
+    padding: 20px;
+}
+.img-box img{
+    border-radius: 15px;
+    object-fit: cover;
+}
+.looks {
+  font-family: 'Sofia';font-size: 45px;
+  margin: 10px;
+}
+.looksDiv {
+    background-color: #80ff80;
+  }

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% comment %}
+  Final Project: ToDo App
+  Group Member: Wenjie Wang, John Mwai, Alireza
+  COM 214
+  05/11/2021
+{% endcomment %}
+
+{% block title %}All Tasks{% endblock %}
+
+{% block content %}
+
+<br> <br> <br>
+<h2 class="text-center">Completed Tasks </h2>
+
+<div class="list-group">
+ {% for task in tasks %}
+  {% if task.completed_date %}
+  <a href="{% url 'todo_detail' task.pk %}" class="list-group-item list-group-item-action list-group-item-success">{{ task.title }} <p class="float-right">Completed on:  {{ task.completed_date }}</p></a>
+  <br>
+  {% endif %}
+{% endfor%}
+</div>
+
+{% endblock %}

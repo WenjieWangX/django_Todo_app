@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% comment %}
+  Final Project: ToDo App
+  Group Member: Wenjie Wang, John Mwai, Alireza
+  COM 214
+  05/11/2021
+{% endcomment %}
+
+{% block title %}Log In{% endblock %} 
+{% block content%}
+
+  <form method="post">
+    {% csrf_token %} 
+    <div class="login">
+      <div class="row">
+          <h2><i class="fas fa-user"></i> Log In</h2>
+          <div class="col-md-12">
+              <label for="email">Username</label>
+              <input type="text" class = "form-control" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="Enter Username">
+              <br>
+              <label for="password">Password</label>
+              <input type="password" class = "form-control" name="password" autocomplete="current-password" required="" id="id_password" placeholder="Enter Password">
+          </div>
+      </div>
+      <button class="btn btn-outline-primary btn-form" type="submit">LOGIN</button>
+      <div class="row">
+        <div class="col-md-12">
+          <span>Don't have an account?</span> 
+          <a href="{% url 'signup' %}"><u>Sign Up</u></a>
+        </div>
+      </div>
+  </div>
+  </form>
+
+{% endblock %}

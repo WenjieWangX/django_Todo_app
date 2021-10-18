@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% comment %}
+  Final Project: ToDo App
+  Group Member: Wenjie Wang, John Mwai, Alireza
+  COM 214
+  05/11/2021
+{% endcomment %}
+{% block title %}Todo Detail{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+  <h2 style="margin-top: 1em; margin-bottom: 1em;">Task Details</h2>
+</div>
+
+<div class="container jumbotron shadow-lg p-3 mb-5 bg-body">
+  <div style="margin: 1em;">
+    <div style="border-bottom: 1px solid; width: fit-content; padding-bottom: 10px; margin-bottom:10px">
+      <h2>
+        {{ object.title }}
+      </h2>
+      <small class="text-muted mr-4">by: {{ object.author }} | Catergory: <a href="{% url 'category_detail' object.category.pk %}">{{ object.category }}</a></small>
+    </div>
+      <p class="text-muted">
+        {% if object.description %}
+        {{ object.description }}
+        {% else %}
+        No description
+        {% endif %}
+      </p>
+      <div class="row">
+        <div class="col">
+          <h5 class="m-b-5">Start Date</h5>
+            <p>{{ object.created_date }}</p>
+        </div>
+        <div class="col">
+          <h5 class="m-b-5">Completed Date</h5>
+          {% if object.completed_date %}
+            <p>{{ object.completed_date }}</p>
+          {% else %}
+            <p>This task has not been complete yet</p>
+          {% endif %}
+        </div>
+        </div>
+      </div>
+      <div style="float: right;">
+        <a href="{% url 'todo_edit' todo.pk %}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+        <a href="{% url 'todo_delete' todo.pk %}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+      </div>
+    </div>
+    <br>
+    <div class="text-center">	
+      <a href="{% url 'tasks' %}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">View All Tasks</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

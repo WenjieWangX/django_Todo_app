@@ -1,0 +1,92 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% comment %}
+  Final Project: ToDo App
+  Group Member: Wenjie Wang, John Mwai, Alireza
+  COM 214
+  05/11/2021
+{% endcomment %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  
+ <div class="p-3 mb-2 bg-light">
+  <div class="container">
+    <div class="text-center">
+      <div class="display-4"><i class="far fa-calendar-alt"></i> Today is: <i id="dateTime"></i></div>
+      <h1><i class="far fa-clock"></i></h1>
+      <br>
+      <div id="DigitalCLOCK" class="clock" onload="showTime()"></div>
+    </div>
+  </div>
+</div>
+<div class="container p-3 mb-2 bg-light text-dark">
+    <div class="text-center">
+      {% if user.is_authenticated %}
+      <h1 class="head text-uppercase style-color">WELCOME BACK {{ user.first_name }}</h1>
+      {% else %}
+      <h1 class="">WELCOME TO OUR WEBSITE</h1>
+      {% endif %}
+      <pre class="text-center">         
+                  This is a <bold>TODO APP</bold>, 
+                where you can track your daily tasks.
+            After registering an account you can create your personal to do.
+                    This app increase your daily productivity.
+      </pre>
+      <p>In this website you are able to keep on track of the list of things you need to do.</p>
+      <p>After creating a task you can set it as an important task based on your preference. You can checked a task after finishing that. You can also delete the unnecessary tasks</p>
+      {% if user.is_authenticated %}
+      <p>Click Below To Get Started</p>
+         {% else %}
+      <p>In order to use this website please Login or Sign Up.</p>
+
+       {% endif %}
+      <div class="row">
+          {% if user.is_authenticated %}
+        <div class="col-md-12">
+          <a class="btn btn-outline-primary btn-form" href="{% url 'todo_create' %}">Getting Started</a>
+        </div>
+          {% else %}
+
+        <div class="col-md-6">
+          <a class="btn btn-outline-primary btn-form" href="{% url 'login' %}">Login In</a>
+        </div>
+        <div class="col-md-6">
+          <a class="btn btn-outline-success btn-form" href="{% url 'signup' %}">Sign Up</a>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+  </div>
+  <div class="looksDiv">
+    <h1 class="text-center looks">Hottest Top 10 News From News Api </h1>
+  </div>
+  
+    <div class="container-fluid">
+        {% for value in data %}
+        <div class="card mb-3 box" style="max-width: 640px; margin:auto;">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{value.url}}" target="_blanck">{{value.title}}</a></h5>
+                        <p class="card-text">{{value.description}}</p>
+                        <p class="card-text"><small class="text-muted">{{value.publishedat}}</small></p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 img-box">
+                  {% if value.image%}
+                    <img src="{{value.image}}" class="card-img" alt="..." height="100%">
+                  {% else %}
+                  <img src="{{value.image}}" class="card-img" alt="No Image on this post :(" height="100%">
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

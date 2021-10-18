@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% comment %}
+  Final Project: ToDo App
+  Group Member: Wenjie Wang, John Mwai, Alireza
+  COM 214
+  05/11/2021
+{% endcomment %}
+
+{% block title %}All Tasks{% endblock %}
+
+{% block content %}
+<div class="section-padding pt-4">
+	<div class="container">
+		{% if tasks %}
+		<div class="md-6 float-right">
+			<a href="{% url 'todo_create' %}" class="btn btn-primary btn-lg" role="button" aria-disabled="true"><i class="fas fa-plus" title="Add Task"></i> Add New Task</a>
+		</div>
+		<h2>All Tasks </h2>
+		<br> 
+		<div class="alert alert-info" role="alert">
+  	Hover On the Icons to see info of what they do!
+	</div>
+		{% if messages %}
+				{% for message in messages %}
+						<p class="alert alert-success" id="time">{{ message|safe }}</p>
+				{% endfor %}
+		{% endif %}
+		{% for task in tasks %}
+		<div class="border-light p-3 my-3 {% if task.priority %} important-task {% else %} bg-light {% endif %}">
+			<div>
+				<a href="{% url 'important' task.id %}" title="Important"
+				   class="mr-3 {% if task.priority %} text-primary {% endif %}">
+					{% if task.priority %}
+						<i class="fas fa-star" style="color:yellow"></i>
+					{% else %}
+						<i class="far fa-star"></i>
+					{% endif %}
+				</a>
+				<b>{{task.title | truncatewords:15 }}</b>
+				<div class="float-right">
+					<a href="{% url 'todo_edit' task.id %}" title="Edit" class="mr-3"><i class="fas fa-edit"></i></a>
+					<a href="{% url 'complete_task' task.id %}"
+						class="{% if task.completed %}text-success {% endif %} mx-3"
+						title="{% if task.completed %}Complete task {% else %}Task Already Complete{% endif %}">
+						<i class="fas fa-check"></i>
+					</a>
+					
+					<a href="{% url 'todo_delete' task.id %}" title="Delete"
+						class="text-danger mx-3"><i class="fas fa-times"></i></a>
+				</div>
+			</div>
+			<div class="text-muted">
+				<small class="mr-4">Created: {{ task.created_date }}</small>
+				<small class="mr-4">Category: <a href="{% url 'category_detail' task.category.pk %}">{{ task.category }}</a></small>
+				{% if task.completed %}
+				<small class="mr-4 completeTask">Completed: {{ task.completed_date }}</small>
+				{% else %}
+				<small>Task not complete yet.</small>
+
+				{% endif %}
+				<small class="float-right"><a href="{% url 'todo_detail' task.id %}" title="Open Link">View Details<i class="fas fa-external-link-alt"></i></a></small>
+			</div>
+		</div>
+		{% endfor %}
+		{% else %}
+		<div class="text-center">
+			<div class="display-4">You don't have any task yet.</div><br>
+			<p class="display-5">After creating a task you can set it as an important task based on your preference. You can
+				checked a task after finishing that. You can also delete the unnecessary tasks.</p>
+			<a class="btn btn-primary btn" href="{% url 'todo_create' %}">Create Task</a>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+
+{% endblock %}

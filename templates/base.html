@@ -1,0 +1,107 @@
+<!-- templates/base.html -->
+<!-- Final Project: Todo App
+Group Memeber: Wenjie Wang. John Mway, Alireza
+COM214
+05/11/2021-->
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'fontawesome-free-5.15.2-web/css/all.min.css' %}"
+    />
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/clock.css' %}" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <i class="fas fa-home"></i> ToDo
+        </a>
+        {% if user.is_authenticated %}
+        <a class="navbar-brand" href="{% url 'tasks' %}">
+          <i class="fas fa-globe"></i> All Tasks
+        </a>
+        <a class="navbar-brand" href="{% url 'categories' %}">
+          <i class="fas fa-globe"></i> All Categories
+        </a>
+        <a class="navbar-brand" href="{% url 'todo_create' %}">
+          <i class="fas fa-plus-square"></i> Create task
+        </a>
+        <a class="navbar-brand" href="{% url 'todo_category_create' %}">
+          <i class="fas fa-plus-square"></i> Create Category
+        </a>
+        <a class="navbar-brand" href="{% url 'completed_tasks' %}">
+          <i class="fas fa-check"></i> Completed Tasks
+        </a>
+        <ul class="nav nav-pills ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle name-color" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
+              {{ user.first_name }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+            </div>
+          </li>
+        </ul>
+        {% else %}
+        <form class="form-inline ml-auto">
+          <a href="{% url 'login' %}" class="btn btn-primary ml-2">
+          Log In</a>
+          <a href="{% url 'signup' %}" class="btn btn-success ml-2">
+          Sign up</a>
+        </form>
+        {% endif %}
+      </div>
+    </ul>
+      </nav>
+    </header>
+    <div class="container">
+   {% block content %} 
+   {% endblock %}
+   </div>
+
+</footer>
+    <footer class="footer text-center">
+      <div class="container">  
+        <i class="far fa-copyright"></i>
+          <span class="text-muted">@John  &#128293; @Wenjie   &#128293; @Alireza   &#128293;</span
+        >
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/clock.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% comment %}
+  Final Project: ToDo App
+  Group Member: Wenjie Wang, John Mwai, Alireza
+  COM 214
+  05/11/2021
+{% endcomment %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if categories %}
+<div class="section-padding pt-4">
+	<div class="container">
+		<div class="md-6 float-right">
+			<a href="{% url 'todo_category_create' %}" class="btn btn-primary btn-lg" role="button" aria-disabled="true"><i class="fas fa-plus" title="Add Category"></i> Add New Category</a>
+		</div>
+		<h2>All Categories </h2>
+		<br>
+		<div class="alert alert-warning" role="alert">
+				Hover On the Icons to see info of what they do!
+		</div>
+		<div class="list-group">
+			{% for category in categories %}
+			<div class="display-5 d-flex flex-row">
+				<a href="{% url 'category_edit' category.pk %}" class="p-2 border edit_style_left" title="Edit Task"><i class="far fa-edit"></i></a>
+					<a href="{% url 'category_detail' category.pk %}" class="list-group-item list-group-item-action list-group-item-info mr-4"> {{ category.name }}
+					</a>
+
+				<a href="{% url 'category_delete' category.pk %}" class="p-2 edit_style_right border" title="Delete Category"><i class="far fa-trash-alt"></i></a>
+			</div>
+			<br>
+		{% endfor%}
+
+		{% else %}
+		<div class="text-center">
+			<div class="display-4">You don't have any Categry yet.</div><br>
+			<p class="display-5">After creating a category you can edit category or delete unnecessary categories</p>
+			<a class="btn btn-primary btn" href="{% url 'todo_category_create' %}">Create Category</a>
+		</div>
+		{% endif %}
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}
